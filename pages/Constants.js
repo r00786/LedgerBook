@@ -1,0 +1,9 @@
+export const SPLASH_TIME_OUT = 'splash_time_out';
+export const EMAIL_CHANGED = 'email_changed';
+export const PASS_CHANGED = 'password_changed';
+export const START_LOGIN = 'start_login';
+export const LOGIN_SUCCESS = 'login_success';
+export const USER_LOGGED_IN = 'USR_LGD_IN';
+export const WORD_CHANGED = 'WRD_CHNGED';
+export const MEANING_CHANGED = 'MEANING_CHNGED';
+export const SENTENCE_CHANGED = "SENTENCE_CHANGED";

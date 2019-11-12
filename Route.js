@@ -18,6 +18,7 @@ import { createStackNavigator } from 'react-navigation-stack';
 import Screen1 from './pages/Screen1';
 import Screen2 from './pages/Screen2';
 import Screen3 from './pages/Screen3';
+import Splash from './pages/Splash/Splash';
 
 class NavigationDrawerStructure extends Component {
   //Structure for the navigatin Drawer
@@ -109,5 +110,9 @@ const DrawerNavigatorExample = createDrawerNavigator({
     },
   },
 });
+const RootNavigator = createStackNavigator({ Splash, DrawerNavigatorExample }, {
 
-export default createAppContainer(DrawerNavigatorExample);
+  headerMode: "none"
+});
+
+export default createAppContainer(RootNavigator);
