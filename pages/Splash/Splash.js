@@ -21,7 +21,7 @@ class Splash extends Component {
             const resetAction = StackActions.reset({
                 index: 0,
                 actions: [
-                    NavigationActions.navigate({ routeName: "DrawerNavigatorExample" })
+                    NavigationActions.navigate({ routeName: "SideMenu" })
                 ]
             });
 
@@ -44,7 +44,7 @@ class Splash extends Component {
         return (
             <View style={imageContainer}>
                 <View style={centerViewStyle} >
-                    <Text style={textStyle} >Ledger Book</Text>
+                    <Text style={textStyle} >------</Text>
                 </View>
                 {this.checkIfUserLoggedInOrNot()}
             </View>
