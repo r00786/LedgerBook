@@ -7,6 +7,7 @@ import {
     FlatList,
     ActivityIndicator,
     Image,
+    Text,
     TouchableOpacity,
 } from 'react-native';
 //import all the components we will need
@@ -21,7 +22,7 @@ export default class Screen1 extends Component {
     componentDidMount() {
         var that = this;
         let items = Array.apply(null, Array(60)).map((v, i) => {
-            return { id: i, src: 'http://placehold.it/200x200?text=' + (i + 1), name: id };
+            return {id:i,  src: 'http://placehold.it/200x200?text=' + (i + 1), name: id };
         });
         that.setState({
             dataSource: items,
