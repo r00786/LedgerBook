@@ -1,6 +1,7 @@
 /*This is an Example of Grid View in React Native*/
 import React, { Component } from 'react';
 //import rect in our project
+import { ITEM_NAME, ITEM_SCHEMA } from './Db'
 import {
     StyleSheet,
     View,
@@ -10,33 +11,47 @@ import {
     Text,
     TouchableOpacity,
 } from 'react-native';
+const Realm = require('realm');
+
 //import all the components we will need
 
 export default class Screen1 extends Component {
+   
     constructor() {
         super();
-        this.state = {
-            dataSource: {},
-        };
+        this.state = { realm: null };
     }
     componentDidMount() {
-        var that = this;
-        let items = Array.apply(null, Array(60)).map((v, i) => {
-            return {id:i,  src: 'http://placehold.it/200x200?text=' + (i + 1), name: id };
-        });
-        that.setState({
-            dataSource: items,
+        Realm.open({
+            schema: [ITEM_SCHEMA]
+        }).then(realm => {
+            const items = realm.objects(ITEM_NAME)
+            if (items == null || items.length == 0) {
+                realm.write(() => {
+                    realm.create(ITEM_NAME, {
+                        item_name: 'Employees',
+                        item_img_url: 'sjkdj',
+                        item_nav: 'sjdks'
+                    });
+                });
+            }
+
+
+            this.setState({ realm });
         });
     }
     render() {
-        return (
+        let allItems = this.state.realm!=null ? this.state.realm.objects(ITEM_NAME) : null;
+
+
+        return (allItems != null) ? (
             <View style={styles.MainContainer}>
                 <FlatList
-                    data={this.state.dataSource}
+                    data={allItems}
                     renderItem={({ item }) => (
                         <View style={{ flex: 1, flexDirection: 'column', margin: 1, justifyContent: 'center' }}>
-                            <Image style={styles.imageThumbnail} source={{ uri: item.src }} />
-                            <Text>item.id</Text>
+                            <Image style={styles.imageThumbnail} source={{ uri: "" }} />
+                            <Text>{item.item_name}</Text>
                         </View>
                     )}
                     //Setting the number of column
@@ -44,7 +59,7 @@ export default class Screen1 extends Component {
                     keyExtractor={(item, index) => index.toString()}
                 />
             </View>
-        );
+        ) : <View />;
     }
 }
 
