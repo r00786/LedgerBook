@@ -7,3 +7,4 @@ export const USER_LOGGED_IN = 'USR_LGD_IN';
 export const WORD_CHANGED = 'WRD_CHNGED';
 export const MEANING_CHANGED = 'MEANING_CHNGED';
 export const SENTENCE_CHANGED = "SENTENCE_CHANGED";
+export const GET_DASHBOARD_ITEMS="GT_DSH_ITMS";

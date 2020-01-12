@@ -1,62 +1,41 @@
 /*This is an Example of Grid View in React Native*/
 import React, { Component } from 'react';
 //import rect in our project
-import { ITEM_NAME, ITEM_SCHEMA } from './Db'
+import { connect } from 'react-redux';
+import { getDashBoardItems } from './Actions';
+import { FlatGrid } from 'react-native-super-grid';
 import {
     StyleSheet,
     View,
     FlatList,
-    ActivityIndicator,
     Image,
     Text,
-    TouchableOpacity,
 } from 'react-native';
-const Realm = require('realm');
+import { Card } from './Common'
 
 //import all the components we will need
 
-export default class Screen1 extends Component {
-   
-    constructor() {
-        super();
-        this.state = { realm: null };
-    }
+class Screen1 extends Component {
+
+
     componentDidMount() {
-        Realm.open({
-            schema: [ITEM_SCHEMA]
-        }).then(realm => {
-            const items = realm.objects(ITEM_NAME)
-            if (items == null || items.length == 0) {
-                realm.write(() => {
-                    realm.create(ITEM_NAME, {
-                        item_name: 'Employees',
-                        item_img_url: 'sjkdj',
-                        item_nav: 'sjdks'
-                    });
-                });
-            }
-
-
-            this.setState({ realm });
-        });
+        this.props.getDashBoardItems();
     }
     render() {
-        let allItems = this.state.realm!=null ? this.state.realm.objects(ITEM_NAME) : null;
-
-
+        var allItems = this.props.items
         return (allItems != null) ? (
             <View style={styles.MainContainer}>
-                <FlatList
-                    data={allItems}
-                    renderItem={({ item }) => (
-                        <View style={{ flex: 1, flexDirection: 'column', margin: 1, justifyContent: 'center' }}>
-                            <Image style={styles.imageThumbnail} source={{ uri: "" }} />
+                <FlatGrid
+                  itemDimension={130}
+                     items={allItems}
+                    renderItem={({ item, index }) => {                     
+
+                        return <View style={style()}>
+                            <Image style={styles.imageThumbnail} source={item.item_img_url} />
                             <Text>{item.item_name}</Text>
                         </View>
-                    )}
-                    //Setting the number of column
-                    numColumns={2}
-                    keyExtractor={(item, index) => index.toString()}
+                    }
+                    }
                 />
             </View>
         ) : <View />;
@@ -70,8 +49,38 @@ const styles = StyleSheet.create({
         paddingTop: 0,
     },
     imageThumbnail: {
-        justifyContent: 'center',
-        alignItems: 'center',
+        flex: 1,
+        width: null,
         height: 100,
+        resizeMode: 'contain'
     },
 });
+const style = () => {
+    return {
+        borderRadius: 8,
+        borderColor: '#ddd',
+        backgroundColor: '#FFFFFF',
+        borderBottomwidth: 0,
+        padding: 10,
+        shadowColor: '#000000',
+        shadowOffset: { width: 0, height: 10 },
+        shadowOpacity: 0.2,
+        elevation: 2,
+        position: 'relative',     
+        margin: 1,
+        flex: 1,
+        flexDirection: 'column',        
+        justifyContent: 'center'
+    };
+
+
+
+};
+
+const mapStateToProps = (state) => {
+    return {
+        items: state.screen1.items
+    };
+};
+
+export default connect(mapStateToProps, { getDashBoardItems })(Screen1);
