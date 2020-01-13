@@ -4,12 +4,15 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { getDashBoardItems } from './Actions';
 import { FlatGrid } from 'react-native-super-grid';
+import { StackActions, NavigationActions } from 'react-navigation'
+
 import {
     StyleSheet,
     View,
     FlatList,
     Image,
     Text,
+    TouchableOpacity
 } from 'react-native';
 import { Card } from './Common'
 
@@ -30,10 +33,18 @@ class Screen1 extends Component {
                      items={allItems}
                     renderItem={({ item, index }) => {                     
 
-                        return <View style={style()}>
+                        return  <View style={style()}>
+                            <TouchableOpacity onPress={()=>{
+                                console.log(item.item_nav )
+                                this.props.navigation.navigate(item.item_nav )
+                            
+                        }}>
                             <Image style={styles.imageThumbnail} source={item.item_img_url} />
-                            <Text>{item.item_name}</Text>
+                            <Text style={{textAlignVertical: "center",textAlign: "center",}}>{item.item_name}</Text>
+                            </TouchableOpacity>
                         </View>
+                        
+                       
                     }
                     }
                 />
@@ -41,6 +52,7 @@ class Screen1 extends Component {
         ) : <View />;
     }
 }
+
 
 const styles = StyleSheet.create({
     MainContainer: {

@@ -17,18 +17,10 @@ export const getDashBoardItems = () => {
                     realm.create(ITEM_NAME, {
                         item_name: 'Employees',
                         item_img_url: EMP_IMG,
-                        item_nav: 'sjdks'
+                        item_nav: 'Screen2'
                     });
-                    realm.create(ITEM_NAME, {
-                        item_name: 'Employees1',
-                        item_img_url: EMP_IMG,
-                        item_nav: 'sjdks'
-                    });
-                    realm.create(ITEM_NAME, {
-                        item_name: 'Employees2',
-                        item_img_url: EMP_IMG,
-                        item_nav: 'sjdks'
-                    });
+                   
+                
                 });
             }         
             dispatch({
