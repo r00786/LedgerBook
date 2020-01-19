@@ -2,11 +2,12 @@
 import React, { Component } from 'react';
 //import react in our code.
 import { StyleSheet, View, Text, SafeAreaView, ScrollView } from 'react-native';
-import { Card } from './Common';
+import { Card ,Button} from './Common';
 import { TextField } from 'react-native-material-textfield';
 import { Header } from './Common';
 import { connect } from 'react-redux';
 import { Dropdown } from 'react-native-material-dropdown';
+import { BACK_ARROW } from './Assets/Images'
 
 
 // import all basic components
@@ -14,18 +15,20 @@ class EmpScreen extends Component {
     //Screen2 Component
     render() {
         let data = [{
-            value: 'Half',
+            value: 'Day',
         }, {
-            value: 'Full',
-        }, {
-            value: 'Over-Time',
+            value: 'Hour',
         }];
         return (
 
-            <SafeAreaView>
-                <ScrollView>
+            <SafeAreaView style={{flex:1}}>
+                 <Header headerText='Add Employee' leftImage={BACK_ARROW} backArrowClick={()=>{
+                            this.props.navigation.goBack();
+                        }} ></Header>
+            
+                <ScrollView  >
                     <View>
-                        <Header headerText='Add Employee'>{}</Header>
+                       
                         <Card>
                             <View >
                                 <Text style={{ fontSize: 23 }}> Personal Information </Text>
@@ -39,19 +42,20 @@ class EmpScreen extends Component {
                         <Card>
                             <View >
                                 <Dropdown label='Wage Type' data={data}></Dropdown>
+                                <TextField label='Wage Per Day' ref={this.props.wageperday} keyboardType='phone-pad' ></TextField>
+                                <TextField label='Wage Per Half Day' ref={this.props.wageperhalfday} keyboardType='phone-pad' ></TextField>
+                                <TextField label='Overtime' ref={this.props.mobile} keyboardType='phone-pad' ></TextField>
 
                             </View>
+                          
                         </Card>
+                        <Button>Submit</Button>
+                      
                     </View>
                 </ScrollView>
             </SafeAreaView>
         );
-    }
-
-    onSubmit = () => {
-        let { current: field } = this.props.name;
-        console.log(field.value());
-    };
+    }  
 
 
 

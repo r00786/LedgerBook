@@ -27,11 +27,10 @@ class Screen1 extends Component {
                 <FlatGrid
                   itemDimension={130}
                      items={allItems}
-                    renderItem={({ item, index }) => {                     
+                    renderItem={({ item }) => {                     
 
                         return  <View style={style()}>
                             <TouchableOpacity onPress={()=>{
-                                console.log(item.item_nav )
                                 this.props.navigation.navigate(item.item_nav )
                             
                         }}>

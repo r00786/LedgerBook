@@ -32,7 +32,7 @@ const FirstActivity_StackNavigator = createStackNavigator({
     First: {
         screen: Screen1,
         navigationOptions: ({ navigation }) => ({
-            title: 'Demo Screen 1',
+            title: 'Dashboard',
             headerLeft: <NavigationDrawerStructure navigationProps={navigation} />,
             headerStyle: {
                 backgroundColor: '#FF9800',

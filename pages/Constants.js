@@ -12,3 +12,7 @@ export const NAME="NAME";
 export const MOBILE="MOB";
 export const ADDRESS="ADDR";
 export const EMAIL="EMAIL";
+export const WAGE_TYPE="WAGE_TYPE";
+export const WAGE_PER_DAY="WAGE_PER_DAY";
+export const WAGE_PER_HALF_DAY="WAGE_PER_HALF_DAY";
+export const OVERTIME="OVERTIME";
