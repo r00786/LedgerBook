@@ -2,17 +2,34 @@
 import React, { Component } from 'react';
 //import react in our code.
 import { StyleSheet, View, Text } from 'react-native';
-// import all basic components
+import { Card } from './Common';
+import { TextField } from 'react-native-material-textfield';
+import { onNameChanged } from './Actions';
+import { connect } from 'react-redux';
 
-export default class EmpScreen extends Component {
+// import all basic components
+class EmpScreen extends Component {
     //Screen2 Component
     render() {
         return (
-            <View style={styles.MainContainer}>
-                <Text style={{ fontSize: 23 }}> EmpScreen </Text>
-            </View>
+            <Card>
+                <View >
+                    <Text style={{ fontSize: 23 }}> Personal Information </Text>
+                    <TextField label='Name' ref={this.props.name}  onSubmitEditing={this.onSubmit}></TextField>
+                </View>
+            </Card>
         );
     }
+    onNameChange(text) {
+        this.props.emailChanged(text);
+    }
+    onSubmit = () => {
+        let { current: field } = this.props.name;     
+        console.log(field.value());
+      };
+
+   
+
 }
 
 const styles = StyleSheet.create({
@@ -24,3 +41,10 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
 });
+const mapStateToProps = (state) => {
+    return {
+        name: state.empscreen.name
+    };
+};
+
+export default connect(mapStateToProps, { onNameChanged })(EmpScreen);

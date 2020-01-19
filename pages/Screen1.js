@@ -4,17 +4,13 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { getDashBoardItems } from './Actions';
 import { FlatGrid } from 'react-native-super-grid';
-import { StackActions, NavigationActions } from 'react-navigation'
-
 import {
     StyleSheet,
-    View,
-    FlatList,
+    View,   
     Image,
     Text,
     TouchableOpacity
 } from 'react-native';
-import { Card } from './Common'
 
 //import all the components we will need
 

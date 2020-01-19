@@ -1,9 +1,6 @@
 import { GET_DASHBOARD_ITEMS } from '../Constants';
 import { ITEM_NAME, ITEM_SCHEMA } from '../Db'
 import { EMP_IMG } from '../Assets/Images'
-
-
-
 const Realm = require('realm');
 
 export const getDashBoardItems = () => {

@@ -35,14 +35,12 @@ const style = {
     fontSize: 18
   },
   containerStyle: {
+    paddingTop:20,
+    paddingBottom:20,
     alignItems: 'center',
     flex: 1,
-    flexDirection: 'row',
-    borderRadius: 25,
-    backgroundColor: '#fbf8e5',
-    height: 50
-
-  }
+    flexDirection: 'row' 
+     }
 
 };
 
